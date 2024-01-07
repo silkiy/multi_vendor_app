@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:multi_vendor_app/views/buyers/nav_screens/widget/banner_widget.dart';
 
 
 import 'widget/search_input_widget.dart';
@@ -14,21 +15,16 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(
-        top: MediaQuery.of(context).padding.top,
-        left: 25,
-        right: 25,
-      ),
-      child: Column(
-        children: [
-          WelcomeText(),
-          SizedBox(
-            height: 15,
-          ),
-          SearchInputWidget(),
-        ],
-      ),
+    return Column(
+      children: [
+        WelcomeText(),
+        SizedBox(
+          height: 15,
+        ),
+        SearchInputWidget(),
+    
+        BannerWidget(),
+      ],
     );
   }
 }

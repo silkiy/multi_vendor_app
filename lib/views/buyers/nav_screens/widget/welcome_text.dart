@@ -9,21 +9,28 @@ class WelcomeText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          "Welcome",
-          style: GoogleFonts.roboto(
-              fontWeight: FontWeight.bold, fontSize: 40),
-        ),
-        Container(
-          child: SvgPicture.asset(
-            "assets/icons/cart.svg",
-            width: 20,
+    return Padding(
+      padding: EdgeInsets.only(
+        top: MediaQuery.of(context).padding.top,
+        left: 25,
+        right: 25,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            "Welcome",
+            style:
+                GoogleFonts.roboto(fontWeight: FontWeight.bold, fontSize: 25),
           ),
-        ),
-      ],
+          Container(
+            child: SvgPicture.asset(
+              "assets/icons/cart.svg",
+              width: 25,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
