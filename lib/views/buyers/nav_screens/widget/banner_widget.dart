@@ -1,7 +1,34 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class BannerWidget extends StatelessWidget {
-  const BannerWidget({super.key});
+class BannerWidget extends StatefulWidget {
+  @override
+  State<BannerWidget> createState() => _BannerWidgetState();
+}
+
+class _BannerWidgetState extends State<BannerWidget> {
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  final List _bannerImage = [];
+
+  getBanners() {
+    return _firestore
+        .collection('banners')
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        setState(() {
+          _bannerImage.add(doc['image']);
+        });
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    getBanners();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,18 +41,17 @@ class BannerWidget extends StatelessWidget {
           color: Colors.grey.shade200,
           borderRadius: BorderRadius.circular(10),
         ),
-        child: PageView(
-          children: [
-            Center(
-              child: Text("Banner 1"),
-            ),
-            Center(
-              child: Text("Banner 2"),
-            ),
-            Center(
-              child: Text("Banner 3"),
-            ),
-          ],
+        child: PageView.builder(
+          itemCount: _bannerImage.length,
+          itemBuilder: ((context, index) {
+            return ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.network(
+                _bannerImage[index],
+                fit: BoxFit.cover,
+              ),
+            );
+          }),
         ),
       ),
     );
