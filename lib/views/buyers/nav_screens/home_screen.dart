@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:multi_vendor_app/views/buyers/nav_screens/widget/banner_widget.dart';
+import 'package:multi_vendor_app/views/buyers/nav_screens/widget/category_text.dart';
 
 
 import 'widget/search_input_widget.dart';
@@ -16,6 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         WelcomeText(),
         SizedBox(
@@ -24,6 +26,8 @@ class _HomeScreenState extends State<HomeScreen> {
         SearchInputWidget(),
     
         BannerWidget(),
+
+        CategoryText(),
       ],
     );
   }
